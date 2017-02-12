@@ -40,6 +40,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'JSR305' do |jsr305|
+    jsr305.dependency "#{s.name}/JRE"
     jsr305.ios.vendored_frameworks = "dist/frameworks/JSR305.framework"
     jsr305.xcconfig = {
       "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JSR305.framework/Headers\""
