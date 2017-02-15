@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'J2ObjC-Framework'
-  s.version = '1.3.1-1'
+  s.version = '1.3.1-2'
   s.summary = 'Swift-compatible J2ObjC cocoapod'
   s.homepage = 'http://j2objc.org'
 
@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'JRE-headers' do |jreh|
-    jreh.preserve_paths = 'dist/frameworks/JRE.framework/Headers'
+    jreh.preserve_paths = 'dist' # work around empty spec error
     jreh.xcconfig = {
       "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JRE.framework/Headers\""
     }
@@ -50,7 +50,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'JSR305-headers' do |jsr305h|
-    jsr305h.preserve_paths = 'dist/frameworks/JSR305.framework/Headers'
+    jsr305h.preserve_paths = 'dist' # work around empty spec error
     jsr305h.xcconfig = {
       "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JSR305.framework/Headers\""
     }
