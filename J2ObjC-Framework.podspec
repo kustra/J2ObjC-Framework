@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'J2ObjC-Framework'
-  s.version = '1.3.1'
+  s.version = '1.3.1-1'
   s.summary = 'Swift-compatible J2ObjC cocoapod'
   s.homepage = 'http://j2objc.org'
 
@@ -31,20 +31,35 @@ Pod::Spec.new do |s|
     all.dependency "#{s.name}/JSR305"
   end
 
+  s.subspec 'headers' do |h|
+    h.dependency "#{s.name}/JRE-headers"
+    h.dependency "#{s.name}/JSR305-headers"
+  end
+
+  s.subspec 'JRE-headers' do |jreh|
+    jreh.preserve_paths = 'dist/frameworks/JRE.framework/Headers'
+    jreh.xcconfig = {
+      "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JRE.framework/Headers\""
+    }
+  end
+
   s.subspec 'JRE' do |jre|
+    jre.dependency "#{s.name}/JRE-headers"
     jre.ios.vendored_frameworks = "dist/frameworks/JRE.framework"
     jre.libraries = 'z', 'icucore'
-    jre.xcconfig = {
-      "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JRE.framework/Headers\""
+  end
+
+  s.subspec 'JSR305-headers' do |jsr305h|
+    jsr305h.preserve_paths = 'dist/frameworks/JSR305.framework/Headers'
+    jsr305h.xcconfig = {
+      "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JSR305.framework/Headers\""
     }
   end
 
   s.subspec 'JSR305' do |jsr305|
     jsr305.dependency "#{s.name}/JRE"
+    jsr305.dependency "#{s.name}/JSR305-headers"
     jsr305.ios.vendored_frameworks = "dist/frameworks/JSR305.framework"
-    jsr305.xcconfig = {
-      "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/J2ObjC-Framework/dist/frameworks/JSR305.framework/Headers\""
-    }
   end
 
 end
