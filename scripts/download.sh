@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ev
 
-J2OBJC_VERSION="1.3.1"
+J2OBJC_VERSION="2.0.3"
 
 if [[ -d dist ]]; then
   exit
