@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'J2ObjC2-Framework'
-  s.version = '2.0.5-4'
+  s.version = '2.0.5-5'
   s.summary = 'Swift-compatible J2ObjC static framework pod'
   s.homepage = 'http://j2objc.org'
 
@@ -31,17 +31,23 @@ Pod::Spec.new do |s|
     jre.vendored_frameworks = "dist/frameworks/JRE.framework"
     jre.ios.framework = 'UIKit'
     jre.libraries = 'z', 'icucore', 'iconv'
-    jre.xcconfig = {
+
+    xcconfig_entry = {
       "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/#{s.name}/dist/frameworks/JRE.framework/Headers\""
     }
+    jre.xcconfig = xcconfig_entry
+    jre.pod_target_xcconfig = xcconfig_entry
   end
 
   s.subspec 'JSR305' do |jsr305|
     jsr305.dependency "#{s.name}/JRE"
     jsr305.vendored_frameworks = "dist/frameworks/JSR305.framework"
-    jsr305.xcconfig = {
+
+    xcconfig_entry = {
       "HEADER_SEARCH_PATHS" => "\"${PODS_ROOT}/#{s.name}/dist/frameworks/JSR305.framework/Headers\""
     }
+    jsr305.xcconfig = xcconfig_entry
+    jsr305.pod_target_xcconfig = xcconfig_entry
   end
 
 end
