@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'J2ObjC2-Framework'
-  s.version = '2.0.5-5'
+  s.version = '2.2'
   s.summary = 'Swift-compatible J2ObjC static framework pod'
   s.homepage = 'http://j2objc.org'
 
